@@ -10,6 +10,7 @@ const App: React.FC = () => {
       </header>
       <div className="app-nav">
         <a href="/">[ Top ]</a>
+        <a href="/face">[ Face ]</a>
       </div>
     </div>
   );

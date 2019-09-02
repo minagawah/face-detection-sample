@@ -1,0 +1,61 @@
+.face-wrapper {
+}
+
+.face-message {
+}
+
+/*
+#face-off, #face-on {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: ${WRAPPER_WIDTH}px;
+  overflow: hidden;
+  z-index: -9001;
+}
+*/
+        
+#face-off {
+  height: 110px;
+}
+        
+/*
+#face-on {
+  height: ${WRAPPER_HEIGHT}px;
+}
+*/
+        
+#face-player, #face-canvas {
+  background-color: #000000;
+}
+
+.face-row {
+  margin-top: 0.5em;
+}
+
+.face-btn {
+  border: 1px solid #202020;
+  font-size: 1.1em;
+  font-weight: bold;
+  background-color: #f2ff8d;
+  padding: 0.4em;
+  box-shadow: 3px 4px 9px rgba(32, 32, 32, 0.5);
+  cursor: pointer;
+}
+
+#face-btn-open, #face-btn-remove {
+  width: 76px;
+}
+
+#face-btn-stop {
+  margin-left: 0.2em;
+  background-color: #ffcb33;
+}
+
+#face-btn-start {
+  background-color: #90e029;
+}
+
+#face-btn-remove {
+  background-color: #ff776f;
+}

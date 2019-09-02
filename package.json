@@ -1,6 +1,6 @@
 {
   "name": "face-detection-sample",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Playing with Face Detection API.",
   "private": true,
   "scripts": {

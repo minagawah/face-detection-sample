@@ -1,21 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
+import {
+  ContextProvidersContextsType,
+  composeContextProviders,
+} from './lib/utils';
+import { ScreenSizeProvider } from './contexts/ScreenSize';
 
 import App from './App';
+import { Face } from './components/Face';
 
 import 'normalize.css';
 import './index.css';
 
 import * as serviceWorker from './serviceWorker';
 
-// ReactDOM.render(<App />, document.getElementById('root'));
+const contextProviders: ContextProvidersContextsType = [
+  [
+    (ScreenSizeProvider as React.FC), { width: 0, height: 0 }
+  ]
+];
+
+const component: any = (
+  <div className="wrapper">
+    <Route path="/" component={App} />
+    <Route path="/face" component={Face} />
+  </div>
+);
 
 ReactDOM.render(
   <Router>
-    <div className="wrapper">
-      <Route path="/" component={App} />
-    </div>
+    {composeContextProviders(contextProviders, component)}
   </Router>,
   document.getElementById('root')
 );
