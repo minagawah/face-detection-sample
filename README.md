@@ -16,6 +16,38 @@ Playing with Face Detection API.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+```shell
+cd face-detection-sample
+yarn create react-app . --typescript
+
+# Basic setups.
+yarn add typescript @types/node @types/react @types/react-dom @types/jest prop-types
+
+# Adding lint configurations.
+yarn global add tslint typescript tslint-react
+tslint --init
+yarn add tslint tslint-react --dev
+
+# Adding React-Router.
+yarn add react-router-dom
+
+# Post CSS
+yarn add postcss-cli postcss-nested postcss-import postcss-preset-env autoprefixer npm-run-all --dev
+
+# Default CSS is too bothersome...
+yarn add normalize.css
+
+# Adding favorite libraries.
+yarn add ramda
+
+
+# As a whole...
+yarn add typescript @types/node @types/react @types/react-dom @types/jest prop-types normalize.css react-router-dom ramda
+
+yarn add tslint tslint-react postcss-cli postcss-nested postcss-import postcss-preset-env autoprefixer npm-run-all --dev
+```
+
+
 <a id="avail"></a>
 ## 3. Available Scripts
 

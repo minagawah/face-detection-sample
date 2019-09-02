@@ -1,3 +1,5 @@
+@import './App.css';
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +12,30 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.cols {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.rows {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.justify-start { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+
+.align-start { align-items: flex-start; }
+.align-center { align-items: center; }
+.align-end { align-items: flex-end; }
+
+.col-1 { flex: 1 1 calc(33.33333% - 1rem); }
+.col-2 { flex: 1 1 calc(66.66667% - 1rem); }
+.col-3 { flex: 1 1 calc(100% - 1rem); }
+
+.wrapper {
+    padding: 1em;
+    font-size: 1.2.em;
 }
