@@ -3,18 +3,58 @@
 Playing with Face Detection API.
 
 [1. About](#about)  
-[2. What I Did](#what-i-did)  
-[3. Available Scripts](#avail)  
-[4. Notes](#notes)  
-[5. LICENSE](#license)  
+[2. Usage](#usage)  
+[3. What I Did](#what-i-did)  
+[4. Available Scripts](#avail)  
+[5. Notes](#notes)  
+[6. LICENSE](#license)  
+
+![screenshot](screenshot.png "Screenshot")
+
+[View Demo](http://tokyo800.jp/minagawah/face-detection-sample/)  
+In order to view the demo, you need to enable some of the Chrome's developer features.  
+See the instructions in ["2. Usage"](#usage) for how.
+
 
 <a id="about"></a>
 ## 1. About
 
 Playing with Face Detection API.
 
+<a id="usage"></a>
+## 2. Usage
+
+First of all, you need to enable Chrome's experimental features, so that Face Detection API would work.  
+Type the following on Chrome browser's URL:
+
+```
+chrome://flags/#enable-experimental-web-platform-features
+```
+
+Switch it to `Enabled`:
+
+![chrome_experimental_features](chrome_experimental_features.png "chrome_experimental_features")
+
+Secondly, while this is optional, in order for `navigator.mediaDevices` to work without `https`,
+you need to tell Chrome browser to ignore the security policy:
+
+```
+chrome://flags/#unsafely-treat-insecure-origin-as-secure
+```
+
+In the example bellow, you need to set `http://tokyo800.jp`
+to view the [demo](http://tokyo800.jp/minagawah/face-detection-sample/) for this project:
+
+![chrome_secure_origin](chrome_secure_origin.png "chrome_secure_origin")
+
+When all is done, relaunch your Chrome browser, and you should be able to see the
+[demo](http://tokyo800.jp/minagawah/face-detection-sample/)!
+
+
+
+
 <a id="what-i-did"></a>
-## 2. What I Did
+## 3. What I Did
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -30,6 +70,9 @@ yarn global add tslint typescript tslint-react
 tslint --init
 yarn add tslint tslint-react --dev
 
+# Hooks
+yarn add react-use
+
 # Adding React-Router.
 yarn add react-router-dom
 
@@ -44,14 +87,14 @@ yarn add ramda
 
 
 # As a whole...
-yarn add typescript @types/node @types/react @types/react-dom @types/jest prop-types normalize.css react-router-dom ramda
+yarn add typescript @types/node @types/react @types/react-dom @types/jest prop-types normalize.css react-use react-router-dom history react-router-hash-link ramda
 
 yarn add tslint tslint-react postcss-cli postcss-nested postcss-import postcss-preset-env autoprefixer npm-run-all --dev
 ```
 
 
 <a id="avail"></a>
-## 3. Available Scripts
+## 4. Available Scripts
 
 In the project directory, you can run:
 
@@ -89,11 +132,11 @@ Instead, it will copy all the configuration files and the transitive dependencie
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 <a id="notes"></a>
-## 4. Notes
+## 5. Notes
 
 
 <a href="license"></a>
-## 5. License
+## 6. License
 
 Provided under [WTFPL](./LICENSE).  
 However, some NPM dependencies have license restrictions.

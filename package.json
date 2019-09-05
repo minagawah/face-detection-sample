@@ -1,6 +1,6 @@
 {
   "name": "face-detection-sample",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Playing with Face Detection API.",
   "private": true,
   "scripts": {
@@ -29,6 +29,7 @@
     ]
   },
   "repository": "https://github.com/minagawah/face-detection-sample.git",
+  "homepage": "/minagawah/face-detection-sample",
   "keywords": [
     "react",
     "face detection api"
@@ -38,7 +39,6 @@
   "bugs": {
     "url": "https://github.com/minagawah/face-detection-sample/issues"
   },
-  "homepage": "https://github.com/minagawah/face-detection-sample#readme",
   "dependencies": {
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.3",
@@ -51,6 +51,7 @@
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
+    "react-use": "^12.2.0",
     "typescript": "^3.6.2"
   },
   "devDependencies": {

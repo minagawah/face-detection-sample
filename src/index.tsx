@@ -1,11 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
-import {
-  ContextProvidersContextsType,
-  composeContextProviders,
-} from './lib/utils';
-import { ScreenSizeProvider } from './contexts/ScreenSize';
+import { ContextProvidersContextsType, composeContextProviders } from './lib/utils';
+import { ScreenSizeProvider, ProvideScreenSize } from './contexts/ScreenSize';
 
 import App from './App';
 import { Face } from './components/Face';
@@ -17,7 +15,7 @@ import * as serviceWorker from './serviceWorker';
 
 const contextProviders: ContextProvidersContextsType = [
   [
-    (ScreenSizeProvider as React.FC), { width: 0, height: 0 }
+    (ProvideScreenSize as React.FC), {}
   ]
 ];
 
@@ -29,7 +27,7 @@ const component: any = (
 );
 
 ReactDOM.render(
-  <Router>
+  <Router basename={process.env.PUBLIC_URL}>
     {composeContextProviders(contextProviders, component)}
   </Router>,
   document.getElementById('root')
