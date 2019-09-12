@@ -37,7 +37,7 @@ I thought it really was a life saver!
 
 Then, [proppy](https://github.com/fahad19/proppy) came out.  
 That was when I realized the nightmere has ended.  
-No Redux is no more!
+No Redux no more!
 
 **Then, came [React Hooks!!!!!!!](https://reactjs.org/docs/hooks-intro.html)**  
 I mean, think about.  
