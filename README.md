@@ -34,8 +34,9 @@ came out, I thought it really was a life saver.
 
 Then, [proppy](https://github.com/fahad19/proppy) came out.  
 That was when I realized the nightmere has ended.  
-No Redux is needed no more!  
-**Then, comes [React Hooks](https://reactjs.org/docs/hooks-intro.html)!!!**  
+No Redux is no more!
+
+**Then, came [React Hooks](https://reactjs.org/docs/hooks-intro.html)!!!!!!!**  
 I mean, think about.  
 You have no idea how long I've waited
 for major front-end frameworks to support FP in production.  
