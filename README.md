@@ -39,6 +39,11 @@ At that time, I was also trying the right way
 for applying FP practices to React projects.  
 For [redux-observable](https://github.com/redux-observable/redux-observable)
 was one of the choice, but I thought it rather complicates the code structure.  
+(using
+[RxJS](https://github.com/ReactiveX/rxjs) and
+[MobX](https://github.com/mobxjs/mobx)
+made me realize `Observe`
+isn't right because you could easily forget where you set pub/sub in your project).  
 [recompose](https://github.com/acdlite/recompose)
 was another decent idea, and I was mainly using it for most of my React project.
 
