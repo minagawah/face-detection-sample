@@ -23,7 +23,9 @@ Playing with [Face Detection API](https://www.chromestatus.com/feature/475799052
 While it's still a developmental feature on Chrome browser,
 for a front-end developer, doesn't it excite you at all?
 
-Also, this is an attempt to use [React Hooks](https://usehooks.com/).  
+Also, this is an attempt to use
+[React Hooks](https://reactjs.org/docs/hooks-intro.html)
+(or what provided in [usehooks.com](https://usehooks.com/)).  
 As a fanatic React lover, what has always been troubling me,
 was the way React states in my projects
 always turn out showing a chaotic tendency
