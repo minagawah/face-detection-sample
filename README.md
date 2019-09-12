@@ -42,8 +42,7 @@ was one of the choices, but I thought it rather complicates the code structure.
 (I knew this from using
 [RxJS](https://github.com/ReactiveX/rxjs) and
 [MobX](https://github.com/mobxjs/mobx)
-which allowed met to realize `Observe`
-isn't the right way  
+which made me realize `Observe` isn't the right way  
 because you could easily forget where you set pub/sub in your project).  
 [recompose](https://github.com/acdlite/recompose)
 was another decent idea, and I was mainly using it for most of my React project.
