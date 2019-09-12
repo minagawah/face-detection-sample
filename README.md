@@ -12,8 +12,8 @@ Playing with Face Detection API **(+ React Hooks!!!)**
 ![screenshot](screenshot.png "Screenshot")
 
 [View Demo](http://tokyo800.jp/minagawah/face-detection-sample/)  
-**In order to view the demo, you need to enable some of the Chrome's developer features.  
-See the instructions in ["2. Usage"](#usage) for how.**
+***In order to view the demo, you need to enable some of the Chrome's developer features.  
+See the instructions in ["2. Usage"](#usage) for how.***
 
 
 <a id="about"></a>
@@ -27,9 +27,9 @@ Also, this is an attempt to use
 [React Hooks](https://reactjs.org/docs/hooks-intro.html)
 (or what provided in [streamich/react-use](https://github.com/streamich/react-use)).  
 As a fanatic React lover, what has always been troubling me,  
-**was the way React states in my projects  
+***was the way React states in my projects  
 always turn out showing chaotic tendencies  
-when it comes to managing actual files in the projects.**  
+when it comes to managing actual files in the projects.***  
 When the idea of
 [ducks](https://github.com/erikras/ducks-modular-redux)
 came out,  
