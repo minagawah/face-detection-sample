@@ -3,7 +3,7 @@
  */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useContext, createContext, useCallback } from 'react';
-import { useEventListener } from './EventListener';
+import { useEvent } from 'react-use';
 
 const print = (s = '') => console.log(`[ScreenSize] ${s}`);
 
@@ -26,11 +26,11 @@ const initialScreenSize: ScreenSizeType = getSize();
 export const useScreenSizeProvider = () => {
   const [size, setSize] = useState(initialScreenSize);
 
-  const handler = useCallback(() => {
+  const resize = useCallback(() => {
     setSize(getSize());
   }, [setSize]);
 
-  useEventListener('resize', handler);
+  useEvent('resize', resize);
 
   return {
     size,

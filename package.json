@@ -1,7 +1,7 @@
 {
   "name": "face-detection-sample",
-  "version": "0.3.0",
-  "description": "Playing with Face Detection API.",
+  "version": "0.4.0",
+  "description": "Playing with Face Detection API + React Hooks",
   "private": true,
   "scripts": {
     "watch:css": "postcss src/index.css -o build/index.css -w",
@@ -31,8 +31,9 @@
   "repository": "https://github.com/minagawah/face-detection-sample.git",
   "homepage": "/minagawah/face-detection-sample",
   "keywords": [
-    "react",
-    "face detection api"
+    "Face Detection API",
+    "React",
+    "Hooks"
   ],
   "author": "minagawah <minagawa@tokyo800.jp>",
   "license": "WTFPL",
