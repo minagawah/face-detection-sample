@@ -29,10 +29,11 @@ Also, this is an attempt to use
 As a fanatic React lover, what has always been troubling me,  
 **was the way React states in my projects  
 always turn out showing chaotic tendencies  
-when it comes to managing the actual files in the projects.**  
+when it comes to managing actual files in the projects.**  
 When the idea of
-[React Ducks](https://github.com/erikras/ducks-modular-redux)
-came out, I thought it really was a life saver.
+[ducks](https://github.com/erikras/ducks-modular-redux)
+came out,  
+I thought it really was a life saver!
 
 Then, [proppy](https://github.com/fahad19/proppy) came out.  
 That was when I realized the nightmere has ended.  
