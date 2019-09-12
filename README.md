@@ -25,7 +25,7 @@ for a front-end developer, doesn't it excite you at all?
 
 Also, this is an attempt to use
 [React Hooks](https://reactjs.org/docs/hooks-intro.html)
-(or what provided in [usehooks.com](https://usehooks.com/)).  
+(or what provided in [streamich/react-use](https://github.com/streamich/react-use)).  
 As a fanatic React lover, what has always been troubling me,
 was the way React states in my projects
 always turn out showing a chaotic tendency
