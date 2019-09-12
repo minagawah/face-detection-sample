@@ -42,7 +42,7 @@ was one of the choice, but I thought it rather complicates the code structure.
 [recompose](https://github.com/acdlite/recompose)
 was another decent ideas, and I was mainly using it for most of my React project.
 
-Then, [proppy](https://github.com/fahad19/proppy) came out.  
+Then, [proppy](https://github.com/fahad19/proppy) came out (early last year).  
 That was when I realized the nightmere has ended.  
 No Redux no more!
 
