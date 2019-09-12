@@ -20,13 +20,13 @@ See the instructions in ["2. Usage"](#usage) for how.***
 ## 1. About
 
 Playing with [Face Detection API](https://www.chromestatus.com/feature/4757990523535360).  
-While it's still a developmental feature on Chrome browser,  
+While it's still in a development stage for Chrome browser,  
 for a front-end developer, doesn't it excite you at all?
 
 Also, this is an attempt to use
 [React Hooks](https://reactjs.org/docs/hooks-intro.html)
 (or what provided in [streamich/react-use](https://github.com/streamich/react-use)).  
-As a fanatic React lover, what has always been troubling me,  
+As a fanatic React lover, what has always been troubling me  
 ***was the way React states in my projects  
 always turn out showing chaotic tendencies  
 when it comes to managing actual files in the projects.***  
