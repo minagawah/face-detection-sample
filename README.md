@@ -1,6 +1,6 @@
 # face-detection-sample
 
-Playing with Face Detection API.
+Playing with Face Detection API (+ React Hooks!)
 
 [1. About](#about)  
 [2. Usage](#usage)  
@@ -12,14 +12,36 @@ Playing with Face Detection API.
 ![screenshot](screenshot.png "Screenshot")
 
 [View Demo](http://tokyo800.jp/minagawah/face-detection-sample/)  
-In order to view the demo, you need to enable some of the Chrome's developer features.  
-See the instructions in ["2. Usage"](#usage) for how.
+**In order to view the demo, you need to enable some of the Chrome's developer features.  
+See the instructions in ["2. Usage"](#usage) for how.**
 
 
 <a id="about"></a>
 ## 1. About
 
-Playing with Face Detection API.
+Playing with [Face Detection API](https://www.chromestatus.com/feature/4757990523535360).  
+While it's still a developmental feature on Chrome browser,
+for a front-end developer, doesn't it excite you at all?
+
+Also, this is an attempt to use [React Hooks](https://usehooks.com/).  
+As a fanatic React lover, what has always been troubling me,
+was the way React states in my projects
+always turn out showing a chaotic tendency
+when it comes to managing the actual files in the projects.  
+When the idea of
+[React Ducks](https://github.com/erikras/ducks-modular-redux)
+came out, I thought it really was a life saver.
+
+Then, [proppy](https://github.com/fahad19/proppy) came out.  
+That was when I realized the nightmere has ended.  
+No Redux is needed no more!  
+Then, [React Hooks](https://reactjs.org/docs/hooks-intro.html)!!!
+I mean, think about.  
+You have no idea how long I've waited
+for major front-end frameworks to support FP in production.  
+I am glad that I was born into this age...
+
+
 
 <a id="usage"></a>
 ## 2. Usage
@@ -35,15 +57,17 @@ Switch it to `Enabled`:
 
 ![chrome_experimental_features](chrome_experimental_features.png "chrome_experimental_features")
 
-Secondly, while this is optional, in order for `navigator.mediaDevices` to work without `https`,
+Secondly, while this is optional,
+and is **only required [to view my demo](http://tokyo800.jp/minagawah/face-detection-sample/).  
+In order for `navigator.mediaDevices` to work without `https`,
 you need to tell Chrome browser to ignore the security policy:
 
 ```
 chrome://flags/#unsafely-treat-insecure-origin-as-secure
 ```
 
-In the example bellow, you need to set `http://tokyo800.jp`
-to view the [demo](http://tokyo800.jp/minagawah/face-detection-sample/) for this project:
+In the example bellow, you need to add `http://tokyo800.jp`.  
+Add it.
 
 ![chrome_secure_origin](chrome_secure_origin.png "chrome_secure_origin")
 
