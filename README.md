@@ -37,11 +37,10 @@ I thought it really was a life saver!
 
 At that time, I was also trying the right way  
 for applying FP practices to React projects.  
-For[redux-observable](https://github.com/redux-observable/redux-observable)
+For [redux-observable](https://github.com/redux-observable/redux-observable)
 was one of the choice, but I thought it rather complicates the code structure.  
 [recompose](https://github.com/acdlite/recompose)
-was another decent ideas, and I was mainly using it  
-for most of my React project.
+was another decent ideas, and I was mainly using it for most of my React project.
 
 Then, [proppy](https://github.com/fahad19/proppy) came out.  
 That was when I realized the nightmere has ended.  
