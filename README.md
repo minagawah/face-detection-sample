@@ -20,7 +20,7 @@ See the instructions in ["2. Usage"](#usage) for how.**
 ## 1. About
 
 Playing with [Face Detection API](https://www.chromestatus.com/feature/4757990523535360).  
-While it's still a developmental feature on Chrome browser,
+While it's still a developmental feature on Chrome browser,  
 for a front-end developer, doesn't it excite you at all?
 
 Also, this is an attempt to use
