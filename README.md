@@ -1,6 +1,6 @@
 # face-detection-sample
 
-Playing with Face Detection API (+ React Hooks!)
+Playing with Face Detection API **(+ React Hooks!!!)**
 
 [1. About](#about)  
 [2. Usage](#usage)  
@@ -35,7 +35,7 @@ came out, I thought it really was a life saver.
 Then, [proppy](https://github.com/fahad19/proppy) came out.  
 That was when I realized the nightmere has ended.  
 No Redux is needed no more!  
-Then, [React Hooks](https://reactjs.org/docs/hooks-intro.html)!!!
+**Then, comes [React Hooks](https://reactjs.org/docs/hooks-intro.html)!!!**  
 I mean, think about.  
 You have no idea how long I've waited
 for major front-end frameworks to support FP in production.  
