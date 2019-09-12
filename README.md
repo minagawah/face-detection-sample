@@ -35,7 +35,7 @@ When the idea of
 came out,  
 I thought it really was a life saver!
 
-At that time, I was also trying the right way  
+At that time, I was also trying the right way
 for applying FP practices to React projects.  
 For [redux-observable](https://github.com/redux-observable/redux-observable)
 was one of the choices, but I thought it rather complicates the code structure.  
