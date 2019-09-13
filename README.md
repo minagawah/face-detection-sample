@@ -38,12 +38,12 @@ I thought it really was a life saver!
 At that time, I was also trying the right way
 for applying FP practices to React projects.  
 For [redux-observable](https://github.com/redux-observable/redux-observable)
-was one of the choices, but I thought it rather complicates the code structure  
+was one of the choices, but I thought it rather complicates the code structure.  
 (I knew it from using
 [RxJS](https://github.com/ReactiveX/rxjs) and
 [MobX](https://github.com/mobxjs/mobx)
 which made me realize `Observe` isn't the right way  
-because you could easily forget where you set pub/sub in your project...).  
+because you could easily forget where you set pub/sub in your project...)  
 [recompose](https://github.com/acdlite/recompose)
 was another decent idea, and I was mainly using this for most of my React projects.
 
@@ -55,11 +55,11 @@ No Redux no more!
 I mean, think about it.  
 You have no idea how long I've waited
 for major front-end frameworks to support FP in production,  
-and at the same time simplifying the code sctuctures  
+and at the same time simplifying the code sctuctures.  
 (compared to
 [the mess I made](https://github.com/minagawah/react-proppy-deckgl-sample)
 from last year for which I used proppy,
-notice how clean the codes have become).  
+notice how clean the codes have become)  
 Honestly, I am so glad that I was born into this age....
 
 
