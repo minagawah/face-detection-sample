@@ -55,12 +55,11 @@ No Redux no more!
 I mean, think about it.  
 You have no idea how long I've waited
 for major front-end frameworks to support FP in production,  
-and at the same time simplifying the code sctuctures.  
+and at the same time simplifying the code sctuctures  
 (compared to
 [the mess I made](https://github.com/minagawah/react-proppy-deckgl-sample)
-from last year for which I used proppy,  
-notice how clean the codes have become)
-
+from last year for which I used proppy,
+notice how clean the codes have become).  
 Honestly, I am so glad that I was born into this age....
 
 
