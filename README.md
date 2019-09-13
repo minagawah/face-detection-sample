@@ -45,14 +45,14 @@ was one of the choices, but I thought it rather complicates the code structure
 which made me realize `Observe` isn't the right way  
 because you could easily forget where you set pub/sub in your project).  
 [recompose](https://github.com/acdlite/recompose)
-was another decent idea, and I was mainly using it for most of my React project.
+was another decent idea, and I was mainly using this for most of my React projects.
 
 Then, [proppy](https://github.com/fahad19/proppy) came out (early last year).  
 That was when I realized the nightmere has ended.  
 No Redux no more!
 
 **Then, came [React Hooks!!!!!!!](https://reactjs.org/docs/hooks-intro.html)**  
-I mean, think about.  
+I mean, think about it.  
 You have no idea how long I've waited
 for major front-end frameworks to support FP in production.  
 I am glad that I was born into this age...
