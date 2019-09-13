@@ -59,8 +59,9 @@ and at the same time simplifying the code sctuctures.
 (compared to
 [the mess I made](https://github.com/minagawah/react-proppy-deckgl-sample)
 from last year for which I used proppy,  
-notice how clean the codes have become)  
-I am so glad that I was born into this age....
+notice how clean the codes have become)
+
+Honestly, I am so glad that I was born into this age....
 
 
 
