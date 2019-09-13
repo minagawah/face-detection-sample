@@ -38,8 +38,8 @@ I thought it really was a life saver!
 At that time, I was also trying the right way
 for applying FP practices to React projects.  
 For [redux-observable](https://github.com/redux-observable/redux-observable)
-was one of the choices, but I thought it rather complicates the code structure.  
-(I knew this from using
+was one of the choices, but I thought it rather complicates the code structure  
+(I knew it from using
 [RxJS](https://github.com/ReactiveX/rxjs) and
 [MobX](https://github.com/mobxjs/mobx)
 which made me realize `Observe` isn't the right way  
