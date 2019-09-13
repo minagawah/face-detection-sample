@@ -54,8 +54,9 @@ No Redux no more!
 **Then, came [React Hooks!!!!!!!](https://reactjs.org/docs/hooks-intro.html)**  
 I mean, think about it.  
 You have no idea how long I've waited
-for major front-end frameworks to support FP in production.  
-I am glad that I was born into this age...
+for major front-end frameworks to support FP in production,  
+and at the same time simplifying the code sctuctures.  
+I am so glad that I was born into this age....
 
 
 
