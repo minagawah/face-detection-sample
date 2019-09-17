@@ -79,7 +79,7 @@ Switch it to `Enabled`:
 ![chrome_experimental_features](chrome_experimental_features.png "chrome_experimental_features")
 
 Secondly, while this is optional,
-and is **only required [to view my demo](http://tokyo800.jp/minagawah/face-detection-sample/).  
+and is **only required [to view my demo](http://tokyo800.jp/minagawah/face-detection-sample/).**  
 In order for `navigator.mediaDevices` to work without `https`,
 you need to tell Chrome browser to ignore the security policy:
 
