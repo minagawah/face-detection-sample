@@ -19,6 +19,46 @@ const print: Function = (s: string): void => console.log(`[Face] ${s}`);
 
 const RATIO = 16 / 9;
 
+const enumerateDevices = (): Promise<any[] | any | unknown> => {
+  return new Promise((resolve, reject) => {
+    navigator.mediaDevices.enumerateDevices().then((list) => {
+      resolve(list);
+    }).catch((err) => {
+      console.error('Failed: navigator.mediaDevices.enumerateDevices');
+      reject(err);
+    });
+    // if (!('mediaDevices' in navigator)) {
+    //   reject(new Error('No support for media handling (navigator.mediaDevices)'));
+    // } else if (typeof navigator.mediaDevices.enumerateDevices !== 'function') {
+    //   reject(new Error('No support for video streaming (navigator.mediaDevices.enumerateDevices)'));
+    // } else {
+    //   navigator.mediaDevices.enumerateDevices().then((list) => {
+    //     resolve(list);
+    //   }).catch((err) => {
+    //     console.error('Failed: navigator.mediaDevices.enumerateDevices');
+    //     reject(err);
+    //   });
+    // }
+  });
+};
+
+const getUserMedia = (options = {}): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    if (!('mediaDevices' in navigator)) {
+      reject(new Error('No support for media handling (navigator.mediaDevices)'));
+    } else if (typeof navigator.mediaDevices.getUserMedia !== 'function') {
+      reject(new Error('No support for video streaming (navigator.mediaDevices.getUserMedia)'));
+    } else {
+      navigator.mediaDevices.getUserMedia(options).then((stream) => {
+        resolve(stream);
+      }).catch((err) => {
+        console.error('Failed: navigator.mediaDevices.getUserMedia');
+        reject(err);
+      });
+    }
+  });
+};
+
 export const Face: React.FC = (props) => {
   const screensize: any = useScreenSize();
 
@@ -190,43 +230,3 @@ ${tw`flex flex-row justify-center content-start items-start`}
     </div>
   );
 };
-
-function enumerateDevices (): Promise<any[] | any | unknown> {
-  return new Promise((resolve, reject) => {
-    navigator.mediaDevices.enumerateDevices().then((list) => {
-      resolve(list);
-    }).catch((err) => {
-      console.error('Failed: navigator.mediaDevices.enumerateDevices');
-      reject(err);
-    });
-    // if (!('mediaDevices' in navigator)) {
-    //   reject(new Error('No support for media handling (navigator.mediaDevices)'));
-    // } else if (typeof navigator.mediaDevices.enumerateDevices !== 'function') {
-    //   reject(new Error('No support for video streaming (navigator.mediaDevices.enumerateDevices)'));
-    // } else {
-    //   navigator.mediaDevices.enumerateDevices().then((list) => {
-    //     resolve(list);
-    //   }).catch((err) => {
-    //     console.error('Failed: navigator.mediaDevices.enumerateDevices');
-    //     reject(err);
-    //   });
-    // }
-  });
-}
-
-function getUserMedia (options = {}): Promise<any> {
-  return new Promise((resolve, reject) => {
-    if (!('mediaDevices' in navigator)) {
-      reject(new Error('No support for media handling (navigator.mediaDevices)'));
-    } else if (typeof navigator.mediaDevices.getUserMedia !== 'function') {
-      reject(new Error('No support for video streaming (navigator.mediaDevices.getUserMedia)'));
-    } else {
-      navigator.mediaDevices.getUserMedia(options).then((stream) => {
-        resolve(stream);
-      }).catch((err) => {
-        console.error('Failed: navigator.mediaDevices.getUserMedia');
-        reject(err);
-      });
-    }
-  });
-}
