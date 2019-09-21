@@ -2,12 +2,17 @@
  * Face Detection API
  */
 /* eslint-disable @typescript-eslint/no-unused-vars, react-hooks/exhaustive-deps */
-import React, { useEffect, useState, RefObject } from 'react';
+import React, { useEffect, useState, useCallback, RefObject } from 'react';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
+import tw from 'tailwind.macro';
 import { useVideo, useDebounce } from 'react-use';
-import { faceDetect } from '../lib/facedetector';
-import { useScreenSize } from '../contexts/ScreenSize';
-import { useCanvas } from '../contexts/Canvas';
-import { useLooper } from '../contexts/Looper';
+import { faceDetect } from './lib/facedetector';
+import { useScreenSize } from './contexts/ScreenSize';
+import { useCanvas } from './contexts/Canvas';
+import { useLooper } from './contexts/Looper';
+
+import './Face.css';
 
 const int = Math.trunc;
 const print: Function = (s: string): void => console.log(`[Face] ${s}`);
@@ -42,7 +47,7 @@ export const Face: React.FC = (props) => {
     }
   }
 
-  const resize = () => {
+  const resize = useCallback(() => {
     const screen_w = screensize.size.width;
     const screen_h = screensize.size.height;
     const avail = screen_h * 0.7;
@@ -63,7 +68,7 @@ export const Face: React.FC = (props) => {
       canvas.width = width;
       canvas.height = height;
     }
-  }
+  }, []);
   
   const capture: Function = (): Promise<void> => {
     return new Promise((resolve, reject) => {
@@ -158,15 +163,21 @@ export const Face: React.FC = (props) => {
   // >Capture</button>
   
   return (
-    <div className="face-wrapper">
-      <div id="face-on" className="cols justify-start align-center">
-        <div className="face-row rows justify-center align-start">
+    <div css={css`
+${tw`flex flex-col justify-start content-center items-center`}
+    `}>
+      <div id="face-on" css={css`
+${tw`flex flex-col justify-start content-center items-center`}
+      `}>
+        <div className="face-row" css={css`
+${tw`flex flex-row justify-center content-start items-start`}
+        `}>
           <button
             className={toggleBtnClass}
             onClick={() => { toggle() }}
           >{btnName}</button>
         </div>
-        <div className="face-row face-message" style={{ width: `${int(mediaSize.width * 0.97)}px` }}>
+        <div className="face-row face-message" css={css`width: ${int(mediaSize.width * 0.97)}px;`}>
           {message}
         </div>
         <div className="face-row">

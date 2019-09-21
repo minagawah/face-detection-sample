@@ -1,8 +1,8 @@
 /**
  */
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
-const print = (s = '') => console.log(`[useLooper] ${s}`);
+// const print = (s = '') => console.log(`[useLooper] ${s}`);
 
 export const useLooper = () => {
   const [timer, setTimer] = useState<any | null>(null);

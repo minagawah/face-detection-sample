@@ -1,5 +1,6 @@
-@import './App.css';
-@import './components/Face.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   margin: 0;
@@ -15,44 +16,25 @@ code {
     monospace;
 }
 
-/* Originally, it was: 0.83em */
-h2 {
-    margin-block-start: 0.2em;
-    margin-block-end: 0.2em;
+.header {
+  background-color: #282c34;
+  font-size: 1.2em;
+  color: white;
+  padding: 0.2em;
+  @apply flex flex-col justify-center content-center items-center;
 }
 
-/* Originally, it was: 1em */
-p {
-    margin-block-start: 0.4em;
-    margin-block-end: 0.4em;
+.logo {
+  animation: app-logo-spin infinite 20s linear;
+  height: 10vmin;
+  pointer-events: none;
 }
 
-.cols {
-  display: flex;
-  flex-flow: column nowrap;
-}
-.rows {
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-.justify-start { justify-content: flex-start; }
-.justify-center { justify-content: center; }
-.justify-end { justify-content: flex-end; }
-
-.align-start { align-items: flex-start; }
-.align-center { align-items: center; }
-.align-end { align-items: flex-end; }
-
-.col-1 { flex: 1 1 calc(33.33333% - 1rem); }
-.col-2 { flex: 1 1 calc(66.66667% - 1rem); }
-.col-3 { flex: 1 1 calc(100% - 1rem); }
-
-.wrapper {
-    padding: 0.6em;
-    font-size: 1.1.em;
-}
-
-.example {
-    color: #afafaf;
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

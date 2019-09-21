@@ -37,7 +37,8 @@ export const useScreenSizeProvider = () => {
   };
 }
 
-export const ProvideScreenSize = ({ children }) => {
+export const ProvideScreenSize: React.FC = (args: any) => {
+  const { children }: { children: any} = args || {};
   const props = useScreenSizeProvider();
   return (
     <ScreenSizeContext.Provider value={props}>

@@ -101,40 +101,54 @@ When all is done, relaunch your Chrome browser, and you should be able to see th
 <a id="what-i-did"></a>
 ## 3. What I Did
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Creating the app.
 
 ```shell
 cd face-detection-sample
 yarn create react-app . --typescript
+```
 
-# Basic setups.
-yarn add typescript @types/node @types/react @types/react-dom @types/jest prop-types
+For types required for React App:
+- typescript
+- @types/node
+- @types/react
+- @types/react-dom
+- @types/react-router-dom
+- @types/jest
+- prop-types
 
-# Adding lint configurations.
-yarn global add tslint typescript tslint-react
-tslint --init
-yarn add tslint tslint-react --dev
+For ESLint (for TSLint will be soon deprecated):
+- @typescript-eslint/eslint-plugin
+- @typescript-eslint/parser
+- eslint-config-react
 
-# Hooks
-yarn add react-use
+For React Router:
+- react-router-dom
 
-# Adding React-Router.
-yarn add react-router-dom
+For CSS-in-JS. Note that `autoplefixer` is already included in CRA.  
+Also, `normalized.css` is in `tailwindcss`.
+- customize-cra
+- react-app-rewired
+- emotion
+- @emotion/core
+- @emotion/styled
+- @emotion/babel-preset-css-prop
+- tailwindcss
+- tailwind.macro@next
 
-# Post CSS
-yarn add postcss-cli postcss-nested postcss-import postcss-preset-env autoprefixer npm-run-all --dev
+For commonly used React Hooks:
+- react-use
 
-# Default CSS is too bothersome...
-yarn add normalize.css
-
-# Adding favorite libraries.
-yarn add ramda
+For service use:
+- ramda
 
 
-# As a whole...
-yarn add typescript @types/node @types/react @types/react-dom @types/jest prop-types normalize.css react-use react-router-dom history react-router-hash-link ramda
+Which makes as a whole...
 
-yarn add tslint tslint-react postcss-cli postcss-nested postcss-import postcss-preset-env autoprefixer npm-run-all --dev
+```shell
+yarn add --dev typescript @types/node @types/react @types/react-dom @types/react-router-dom @types/jest prop-types @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-react customize-cra react-app-rewired emotion @emotion/core @emotion/styled @emotion/babel-preset-css-prop tailwindcss tailwind.macro@next
+
+yarn add react-router-dom react-use ramda --dev
 ```
 
 

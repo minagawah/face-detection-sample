@@ -1,34 +1,44 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
-import { ContextProvidersContextsType, composeContextProviders } from './lib/utils';
-import { ScreenSizeProvider, ProvideScreenSize } from './contexts/ScreenSize';
+import { css, keyframes } from '@emotion/core';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import styled from '@emotion/styled';
+import tw from 'tailwind.macro';
 
-import App from './App';
-import { Face } from './components/Face';
+import { composeContextProviders } from './lib/utils';
+import { ProvideScreenSize } from './contexts/ScreenSize';
+import { Nav } from './Nav';
+import { Home } from './Home';
+import { Face } from './Face';
 
-import 'normalize.css';
+import logo from './logo.svg';
 import './index.css';
 
 import * as serviceWorker from './serviceWorker';
 
-const contextProviders: ContextProvidersContextsType = [
-  [
-    (ProvideScreenSize as React.FC), {}
-  ]
-];
-
-const component: any = (
-  <div className="wrapper">
-    <Route path="/" component={App} />
-    <Route path="/face" component={Face} />
-  </div>
-);
-
 ReactDOM.render(
   <Router basename={process.env.PUBLIC_URL}>
-    {composeContextProviders(contextProviders, component)}
+    {composeContextProviders(
+      [
+        [(ProvideScreenSize as React.FC), {}]
+      ],
+      (
+        <div>
+          <header className="header">
+            <img src={logo} className="logo" alt="logo" />
+            <Nav />
+          </header>
+          <div css={css`margin-top:0.4em;`}>
+            <Switch>
+              <Route exact path="/" component={Face} />
+              <Route path="/home" component={Home} />
+              <Route path="/face" component={Face} />
+            </Switch>
+          </div>
+        </div>
+      )
+    )}
   </Router>,
   document.getElementById('root')
 );
