@@ -19,49 +19,64 @@ See the instructions in ["2. Usage"](#usage) for how.***
 <a id="about"></a>
 ## 1. About
 
-Playing with [Face Detection API](https://www.chromestatus.com/feature/4757990523535360).  
-While it's still in a development stage for Chrome browser,  
-for a front-end developer, doesn't it excite you at all?
+I found out Chrome browser has
+[Face Detection API](https://www.chromestatus.com/feature/4757990523535360)
+as an experimental feature, so I gave a try.
+Turned out, it was ridiculously easy.
 
-Also, this is an attempt to use
+Also, this sample project uses
 [React Hooks](https://reactjs.org/docs/hooks-intro.html)
-(or what provided in [streamich/react-use](https://github.com/streamich/react-use)).  
-As a fanatic React lover, what has always been troubling me  
-***was the way React states in my projects  
-always turn out showing chaotic tendencies  
-when it comes to managing actual files in the projects.***  
-When the idea of
+(most of them are of
+[streamich/react-use](https://github.com/streamich/react-use)
+) because I believe the time is ripe.
+
+For long, what has always been troubling me
+**was that Redux states management in many of my projects
+tend to show chaotic tendencies
+when it comes to managing actual files in the projects.**  
+So, when
 [ducks](https://github.com/erikras/ducks-modular-redux)
-came out,  
-I thought it really was a life saver!
+came out, it was a life saver.
+With [ducks](https://github.com/erikras/ducks-modular-redux),
+the project structure were no longer messy,
+and files for Redux states became cleaner.
 
-At that time, I was also trying the right way
-for applying FP practices to React projects.  
-For [redux-observable](https://github.com/redux-observable/redux-observable)
-was one of the choices, but I thought it rather complicates the code structure.  
-(I knew it from using
-[RxJS](https://github.com/ReactiveX/rxjs) and
+Back then, I was also looking for
+FP (Functional Programming)
+way of implementing React apps.  
+[redux-observable](https://github.com/redux-observable/redux-observable)
+was one of the choices,
+but I knew it would become much messier.
+I knew it from the experience of using
+[RxJS](https://github.com/ReactiveX/rxjs)
+and
 [MobX](https://github.com/mobxjs/mobx)
-which made me realize `Observe` isn't the right way  
-because you could easily forget where you set pub/sub in your project...)  
+with which you tend to forget in your project
+where you defined your publish/subscribe.  
 [recompose](https://github.com/acdlite/recompose)
-was another decent idea, and I was mainly using this for most of my React projects.
+was another, and I chose it for most of my React projects.
 
-Then, [proppy](https://github.com/fahad19/proppy) came out (early last year).  
-That was when I realized the nightmere has ended.  
-No Redux no more!
+I vividly remember when
+[proppy](https://github.com/fahad19/proppy)
+came out last year,
+and I realized the nightmere has ended.
+It was the right way for FP.
 
-**Then, came [React Hooks!!!!!!!](https://reactjs.org/docs/hooks-intro.html)**  
-I mean, think about it.  
-You have no idea how long I've waited
-for major front-end frameworks to support FP in production,  
-and at the same time simplifying the code sctuctures.  
-(compared to
-[the mess I made](https://github.com/minagawah/react-proppy-deckgl-sample)
-from last year for which I used proppy,
-notice how clean the codes have become)  
-Honestly, I am so glad that I was born into this age....
-
+Then, finally,
+[React Hooks!!!!!!!](https://reactjs.org/docs/hooks-intro.html)  
+It was a huge deal to me.
+I don't know how long I've been waiting
+for the time to apply FP to my projects,
+and at the same time,
+something that enables me
+to neatly place files for state management.
+And [React Hooks](https://reactjs.org/docs/hooks-intro.html)
+was the one for me.
+I mean, think about it.
+Compare to
+[the mess I made last year](https://github.com/minagawah/react-proppy-deckgl-sample),
+notice how the codes have become cleaner!  
+Honestly, I am glat to live in this age...
 
 
 <a id="usage"></a>
