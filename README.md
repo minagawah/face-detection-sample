@@ -35,7 +35,7 @@ For long, what has always been troubling me
 tend to turn into chaos when it comes to managing actual files in the projects.**  
 So, when
 [ducks](https://github.com/erikras/ducks-modular-redux)
-came out, it was a life saver.
+came out, it was a life saver.  
 With [ducks](https://github.com/erikras/ducks-modular-redux),
 the project structure were no longer messy,
 and files for Redux states became cleaner.
@@ -48,7 +48,7 @@ but I knew it would become much messier.
 I knew it from the experience of using
 [RxJS](https://github.com/ReactiveX/rxjs)
 and
-[MobX](https://github.com/mobxjs/mobx)
+[MobX](https://github.com/mobxjs/mobx)  
 with which you tend to forget in your project
 where you defined your publish/subscribe.  
 [recompose](https://github.com/acdlite/recompose)
