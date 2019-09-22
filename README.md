@@ -73,7 +73,7 @@ was the one for me.
 I really mean it.  
 Compare to
 [the mess I made last year](https://github.com/minagawah/react-proppy-deckgl-sample),
-and notice how the codes become clean.  
+and notice how the codes have become cleaner!  
 I mean, honestly.  
 I am so glad to be born into this right moment....
 
