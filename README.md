@@ -58,9 +58,9 @@ was another, and I chose it for most of my React projects.
 
 I vividly remember when
 [proppy](https://github.com/fahad19/proppy)
-came out last year,
-and I realized the nightmere has ended.
-It was the right way for FP.
+came out last year.  
+I realized that was the time the nightmere has ended.  
+It was the genuine way of applying FP.
 
 Then, finally,
 [React Hooks!!!!!!!](https://reactjs.org/docs/hooks-intro.html)  
