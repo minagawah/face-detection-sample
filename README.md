@@ -69,9 +69,9 @@ I don't know how long I've been waiting
 for the time to apply FP to my projects,
 and at the same time,
 something that enables me
-to neatly place files for state management.
-And [React Hooks](https://reactjs.org/docs/hooks-intro.html)
-was the one for me.
+to neatly place files for state management.  
+[React Hooks](https://reactjs.org/docs/hooks-intro.html)
+was the one for me.  
 I mean, think about it.
 Compare to
 [the mess I made last year](https://github.com/minagawah/react-proppy-deckgl-sample),
