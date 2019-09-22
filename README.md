@@ -65,7 +65,7 @@ Then, finally,
 [React Hooks!!!!!!!](https://reactjs.org/docs/hooks-intro.html)  
 It was a huge deal to me.  
 I don't know how long I've been waiting
-for a legitimate way of applying FP to my React apps,
+for a legitimate way of applying FP,  
 and at the same time
 enabling me to neatly place files for state management.  
 [React Hooks](https://reactjs.org/docs/hooks-intro.html)
