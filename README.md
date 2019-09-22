@@ -21,14 +21,14 @@ See the instructions in ["2. Usage"](#usage) for how.***
 
 I found out Chrome browser has
 [Face Detection API](https://www.chromestatus.com/feature/4757990523535360)
-as an experimental feature, so I gave a try.
+as an experimental feature, so I gave a try.  
 Turned out, it was ridiculously easy.
 
 Also, this sample project uses
 [React Hooks](https://reactjs.org/docs/hooks-intro.html)
-(most of them are of
-[streamich/react-use](https://github.com/streamich/react-use)
-) because I believe the time is ripe.
+because, I believe, the time is ripe.  
+(most of the hooks are of
+[streamich/react-use](https://github.com/streamich/react-use))
 
 For long, what has always been troubling me
 **was that Redux states management in many of my projects
