@@ -37,8 +37,7 @@ So, when
 [ducks](https://github.com/erikras/ducks-modular-redux)
 came out, it was a life saver.  
 With [ducks](https://github.com/erikras/ducks-modular-redux),
-the project structure were no longer messy,
-and files for Redux states became cleaner.
+files in my projects were no longer messy.
 
 Back at that time, I was also looking for
 FP way of implementing React apps.  
