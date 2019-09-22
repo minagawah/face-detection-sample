@@ -30,10 +30,9 @@ because, I believe, the time is ripe.
 (most of the hooks are of
 [streamich/react-use](https://github.com/streamich/react-use))
 
-For long, what has always been troubling me
-**was that Redux states management in many of my projects
-tend to show chaotic tendencies
-when it comes to managing actual files in the projects.**  
+For long, what has always been troubling me  
+**was that Redux states management in many of my projects  
+tend to turn into chaos when it comes to managing actual files in the projects.**  
 So, when
 [ducks](https://github.com/erikras/ducks-modular-redux)
 came out, it was a life saver.
