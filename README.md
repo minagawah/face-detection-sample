@@ -69,12 +69,13 @@ for a legitimate way of applying FP to my React apps,
 and at the same time
 enabling me to neatly place files for state management.  
 [React Hooks](https://reactjs.org/docs/hooks-intro.html)
-was the one for me.  
-I really mean it.
+was the one for me.
+I really mean it.  
 Compare to
 [the mess I made last year](https://github.com/minagawah/react-proppy-deckgl-sample),
-and notice how the codes become cleaner!  
-I mean, honestly. I am so glad to be born into this right moment....
+and notice how the codes become clean.  
+I mean, honestly.  
+I am so glad to be born into this right moment....
 
 
 <a id="usage"></a>
