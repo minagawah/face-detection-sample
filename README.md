@@ -62,8 +62,8 @@ I realized that was the time the nightmere has ended.
 It was the genuine way of applying FP.
 
 Then, finally,
-[React Hooks!!!!!!!](https://reactjs.org/docs/hooks-intro.html)
-It was a huge deal for me.  
+[React Hooks!!!!!!!](https://reactjs.org/docs/hooks-intro.html)  
+It was a huge deal to me.  
 I don't know how long I've been waiting
 for a legitimate way of applying FP to my React apps,
 and at the same time
