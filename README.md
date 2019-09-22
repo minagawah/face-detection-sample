@@ -41,12 +41,11 @@ With [ducks](https://github.com/erikras/ducks-modular-redux),
 the project structure were no longer messy,
 and files for Redux states became cleaner.
 
-Back then, I was also looking for
-FP (Functional Programming)
-way of implementing React apps.  
+Back at that time, I was also looking for
+FP way of implementing React apps.  
 [redux-observable](https://github.com/redux-observable/redux-observable)
 was one of the choices,
-but I knew it would become much messier.
+but I knew it would become much messier.  
 I knew it from the experience of using
 [RxJS](https://github.com/ReactiveX/rxjs)
 and
@@ -63,20 +62,19 @@ I realized that was the time the nightmere has ended.
 It was the genuine way of applying FP.
 
 Then, finally,
-[React Hooks!!!!!!!](https://reactjs.org/docs/hooks-intro.html)  
-It was a huge deal to me.
+[React Hooks!!!!!!!](https://reactjs.org/docs/hooks-intro.html)
+It was a huge deal for me.  
 I don't know how long I've been waiting
-for the time to apply FP to my projects,
-and at the same time,
-something that enables me
-to neatly place files for state management.  
+for a legitimate way of applying FP to my React apps,
+and at the same time
+enabling me to neatly place files for state management.  
 [React Hooks](https://reactjs.org/docs/hooks-intro.html)
 was the one for me.  
-I mean, think about it.
+I really mean it.
 Compare to
 [the mess I made last year](https://github.com/minagawah/react-proppy-deckgl-sample),
-notice how the codes have become cleaner!  
-Honestly, I am glat to live in this age...
+and notice how the codes become cleaner!  
+I mean, honestly. I am so glad to be born into this right moment....
 
 
 <a id="usage"></a>
