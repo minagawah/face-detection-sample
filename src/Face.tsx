@@ -132,7 +132,7 @@ export const Face: React.FC = (props) => {
         el.width = width;
         el.height = height;
       }
-      return mediaSize;
+      return mediaSize; // Passing it for the next in "compose".
     };
 
   const vSize = makeSetter(videoRef);
