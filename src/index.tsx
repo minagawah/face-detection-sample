@@ -25,12 +25,17 @@ const spin = keyframes`
   }
 `;
 
+type AppliedContext = (React.FC | any)[];
+type AppliedContextList = AppliedContext[];
+
 ReactDOM.render(
   <Router basename={process.env.PUBLIC_URL}>
     {composeContextProviders(
+      // Specify multiple contexts you want
+      // to applyto the child components.
       [
         [(ProvideScreenSize as React.FC), {}]
-      ],
+      ] as AppliedContextList,
       (
         <div>
           <header css={css`
