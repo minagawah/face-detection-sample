@@ -75,6 +75,8 @@ export const Face: React.FC = (props) => {
     <canvas css={tw`bg-black`} />
   );
 
+  const loop = useLooper();
+
   type MediaSizeType = {
     width?: number
     height?: number
@@ -167,8 +169,6 @@ export const Face: React.FC = (props) => {
     });
   }, []);
   
-  const loop = useLooper();
-
   useEffect(() => {
     const video: any | null = videoRef.current;
     if (video.srcObject) {
