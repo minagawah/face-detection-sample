@@ -26,44 +26,34 @@ const print: Function = (s: string): void => console.log(`[Face] ${s}`);
 
 const RATIO = 16 / 9;
 
-const enumerateDevices = (): Promise<any[] | any | unknown> => {
-  return new Promise((resolve, reject) => {
-    navigator.mediaDevices.enumerateDevices().then((list) => {
-      resolve(list);
-    }).catch((err) => {
-      console.error('Failed: navigator.mediaDevices.enumerateDevices');
-      reject(err);
-    });
-    // if (!('mediaDevices' in navigator)) {
-    //   reject(new Error('No support for media handling (navigator.mediaDevices)'));
-    // } else if (typeof navigator.mediaDevices.enumerateDevices !== 'function') {
-    //   reject(new Error('No support for video streaming (navigator.mediaDevices.enumerateDevices)'));
-    // } else {
-    //   navigator.mediaDevices.enumerateDevices().then((list) => {
-    //     resolve(list);
-    //   }).catch((err) => {
-    //     console.error('Failed: navigator.mediaDevices.enumerateDevices');
-    //     reject(err);
-    //   });
-    // }
-  });
+const enumerateDevices = async (): Promise<any[] | any | unknown> => {
+  if (!('mediaDevices' in navigator)) {
+    throw new Error('No support for media handling (navigator.mediaDevices)');
+  }
+  if (typeof navigator.mediaDevices.enumerateDevices !== 'function') {
+    throw new Error('No support for video streaming (navigator.mediaDevices.enumerateDevices)');
+  }
+  try {
+    return await navigator.mediaDevices.enumerateDevices();
+  } catch (err) {
+    console.error('Failed: navigator.mediaDevices.enumerateDevices');
+    throw err;
+  }
 };
 
-const getUserMedia = (options = {}): Promise<any> => {
-  return new Promise((resolve, reject) => {
-    if (!('mediaDevices' in navigator)) {
-      reject(new Error('No support for media handling (navigator.mediaDevices)'));
-    } else if (typeof navigator.mediaDevices.getUserMedia !== 'function') {
-      reject(new Error('No support for video streaming (navigator.mediaDevices.getUserMedia)'));
-    } else {
-      navigator.mediaDevices.getUserMedia(options).then((stream) => {
-        resolve(stream);
-      }).catch((err) => {
-        console.error('Failed: navigator.mediaDevices.getUserMedia');
-        reject(err);
-      });
-    }
-  });
+const getUserMedia = async (options = {}): Promise<any> => {
+  if (!('mediaDevices' in navigator)) {
+    throw new Error('No support for media handling (navigator.mediaDevices)');
+  }
+  if (typeof navigator.mediaDevices.getUserMedia !== 'function') {
+    throw new Error('No support for video streaming (navigator.mediaDevices.getUserMedia)');
+  }
+  try {
+    return await navigator.mediaDevices.getUserMedia(options);
+  } catch (err) {
+    console.error('Failed: navigator.mediaDevices.getUserMedia');
+    throw err;
+  }
 };
 
 const calculateMediaSize = (screenSize: ScreenSizeStateType) => {
@@ -153,34 +143,28 @@ export const Face: React.FC = (props) => {
   useEffect(() => {
     resize([screenSize]); // Invoke "mediaSize" to change.
 
-    try {
-      enumerateDevices().then((list: any[] | any | unknown) => {
-        list.forEach((info) => {
-          const { kind, label } = info;
-          print(`[kind] ${kind} [label] ${label}`);
-        });
-      }).then(() => (
-        getUserMedia({
-          video: {
-            width: mediaSize.width,
-            height: mediaSize.height,
-          },
-          audio: false,
-        })
-      )).then((stream) => {
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-        }
-      }).catch((err) => {
-        console.error('Failed: navigator.mediaDevices');
-        console.warn(err);
-        setMessage('Error: video stream is not supported');
-        // clearMessage(8000);
+    enumerateDevices().then((list: any[] | any | unknown) => {
+      list.forEach((info) => {
+        const { kind, label } = info;
+        print(`[kind] ${kind} [label] ${label}`);
       });
-    } catch (err) {
-      console.error('Failed: video stream');
+    }).then(() => (
+      getUserMedia({
+        video: {
+          width: mediaSize.width,
+          height: mediaSize.height,
+        },
+        audio: false,
+      })
+    )).then((stream) => {
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+    }).catch((err) => {
       console.warn(err);
-    }
+      setMessage('Error: video stream is not supported');
+      // clearMessage(8000);
+    });
   }, []);
   
   const loop = useLooper();
