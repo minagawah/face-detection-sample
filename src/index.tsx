@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { css, keyframes } from '@emotion/core';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import tw from 'tailwind.macro';
 
 import { composeContextProviders } from './lib/utils';
 import { ProvideScreenSize } from './contexts/ScreenSize';
@@ -15,6 +16,15 @@ import './index.css';
 
 import * as serviceWorker from './serviceWorker';
 
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
 ReactDOM.render(
   <Router basename={process.env.PUBLIC_URL}>
     {composeContextProviders(
@@ -23,8 +33,18 @@ ReactDOM.render(
       ],
       (
         <div>
-          <header className="header">
-            <img src={logo} className="logo" alt="logo" />
+          <header css={css`
+background-color: #282c34;
+font-size: 1.2em;
+color: white;
+padding: 0.2em;
+${tw`flex flex-col justify-center content-center items-center`}
+          `}>
+            <img css={css`
+animation: ${spin} infinite 20s linear;
+height: 10vmin;
+pointer-events: none;
+            `} src={logo} alt="logo" />
             <Nav />
           </header>
           <div css={css`margin-top:0.4em;`}>
