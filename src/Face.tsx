@@ -90,9 +90,9 @@ export const Face: React.FC = (props) => {
 
   useDebounce(resize, 800, [screenSize]);
 
-  const toggle = useCallback((): void => {
+  const toggle = (): void => {
     videoControls[videoState.paused ? 'play' : 'pause']();
-  }, [videoState]);
+  };
 
   const capture = (): Promise<void> => new Promise((resolve, reject) => {
     try {
