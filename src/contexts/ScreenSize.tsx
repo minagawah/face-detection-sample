@@ -16,24 +16,21 @@ export type ScreenSizeType = {
   height?: number
 } & unknown
 
-export const getSize = (): ScreenSizeType => ({
+export const getScreenSize = (): ScreenSizeType => ({
   width: window.innerWidth || 0,
   height: window.innerHeight || 0,
 });
 
-const initialScreenSize: ScreenSizeType = getSize();
-
 export const useScreenSizeProvider = () => {
-  const [size, setSize] = useState(initialScreenSize);
+  const [screenSize, setScreenSize] = useState(getScreenSize());
 
-  const resize = useCallback(() => {
-    setSize(getSize());
-  }, [setSize]);
-
-  useEvent('resize', resize);
+  useEvent('resize', () => {
+    setScreenSize(getScreenSize());
+  });
 
   return {
-    size,
+    screenSize,
+    setScreenSize,
   };
 }
 

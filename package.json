@@ -1,6 +1,6 @@
 {
   "name": "face-detection-sample",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Playing with Face Detection API + React Hooks",
   "private": true,
   "scripts": {

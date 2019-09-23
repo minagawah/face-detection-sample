@@ -3,14 +3,17 @@
  */
 /* eslint-disable @typescript-eslint/no-unused-vars, react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useCallback, RefObject } from 'react';
+import { compose } from 'ramda';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
-import { useVideo, useDebounce } from 'react-use';
+// import { useVideo, useDebounce } from 'react-use';
+import { useVideo } from 'react-use';
 import { faceDetect } from './lib/facedetector';
-import { useScreenSize } from './contexts/ScreenSize';
+import { useScreenSize, getScreenSize } from './contexts/ScreenSize';
 import { useCanvas } from './contexts/Canvas';
 import { useLooper } from './contexts/Looper';
+import { useDebounce } from './contexts/Debounce';
 
 import './Face.css';
 
@@ -59,8 +62,16 @@ const getUserMedia = (options = {}): Promise<any> => {
   });
 };
 
+const calculateMediaSize = (screenSize) => {
+  const { width: screen_w = 0, height: screen_h = 0 } = screenSize || {};
+  const avail = screen_h * 0.7;
+  const height = int(avail / 2);
+  const width = int(height * RATIO);
+  return { width, height };
+};
+
 export const Face: React.FC = (props) => {
-  const screensize: any = useScreenSize();
+  const { screenSize } = useScreenSize();
 
   const [video, videoState, videoControls, videoRef] = useVideo(
     <video id="face-video" autoPlay />
@@ -69,16 +80,39 @@ export const Face: React.FC = (props) => {
   const [canvas, canvasState, canvasRef] = useCanvas(
     <canvas id="face-canvas" />
   );
-  
-  const [mediaSize, setMediaSize] = useState({ width: 0, height: 0 });
+
+  const [mediaSize, setMediaSize] = useState(calculateMediaSize(screenSize));
   const [btnName, setBtnName] = useState('Play');
   const [toggleBtnClass, setToggleBtnClass] = useState('face-btn');
   const [message, setMessage] = useState('');
   
-  const clearMessage = (msec = 1000) => {
-    setTimeout(() => { setMessage(''); }, msec);
-  };
-  
+  const capture = (): Promise<void> => new Promise((resolve, reject) => {
+    try {
+      const canvas: HTMLCanvasElement | null = canvasRef.current;
+      const context: CanvasRenderingContext2D | null = canvas && canvas.getContext('2d');
+      if (canvas && context) {
+        // Invoke "mediaSize" to change.
+        // Resizing canvas is the ONLY way to clearRect.
+        resize(screenSize);
+
+        // A video capture to canvas image.
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(videoRef.current as CanvasImageSource, 0, 0, canvas.width, canvas.height);
+
+        // Canvas image to the actual image object (for face detection).
+        const img = new Image();
+        img.src = canvas.toDataURL();
+        img.onload = async () => {
+          const scale = canvas.width / img.width;
+          await faceDetect(context, img, { scale });
+          resolve();
+        };
+      }
+    } catch (err) {
+      reject(err);
+    }
+  });
+
   const toggle: Function = (): void => {
     if (videoState.paused) {
       videoControls.play();
@@ -87,62 +121,28 @@ export const Face: React.FC = (props) => {
     }
   }
 
-  const resize = useCallback(() => {
-    const screen_w = screensize.size.width;
-    const screen_h = screensize.size.height;
-    const avail = screen_h * 0.7;
-    const height = int(avail / 2);
-    const width = int(height * RATIO);
-    
-    setMediaSize({ width, height });
-    // console.log('screensize.size', screensize.size);
-    // print(`mediaSize: ${width}x${height}`);
-    
-    const video: any | null = videoRef.current;
-    const canvas: any | null = canvasRef.current;
-    if (video) {
-      video.width = width;
-      video.height = height;
+  const makeSetter = (ref) => ({ width = 0, height = 0 }) => {
+    const el: any | null = ref.current;
+    if (el) {
+      el.width = width;
+      el.height = height;
     }
-    if (canvas) {
-      canvas.width = width;
-      canvas.height = height;
-    }
-  }, []);
-  
-  const capture: Function = (): Promise<void> => {
-    return new Promise((resolve, reject) => {
-      try {
-        // print('++++ capture()');
-        const canvas: HTMLCanvasElement | null = canvasRef.current;
-        const context: CanvasRenderingContext2D | null = canvas && canvas.getContext('2d');
-        if (canvas && context) {
-          // Resizing canvas is the only way to clearRect...
-          resize();
-
-          // Video to canvas.
-          context.fillRect(0, 0, canvas.width, canvas.height);
-          context.drawImage(videoRef.current as CanvasImageSource, 0, 0, canvas.width, canvas.height);
-
-          // Canvas to `img` object (for Face Detection).
-          const img = new Image();
-          img.src = canvas.toDataURL();
-          img.onload = async () => {
-            const scale = canvas.width / img.width;
-            await faceDetect(context, img, { scale });
-            resolve();
-          };
-        }
-      } catch (err) {
-        reject(err);
-      }
-    });
+    return mediaSize;
   };
 
-  useDebounce(resize, 800, [screensize.size]);
-  
+  const resize = compose(setMediaSize, calculateMediaSize);
+
+  useDebounce(resize, 800, [screenSize]);
+
   useEffect(() => {
-    resize();
+    compose(
+      makeSetter(videoRef),
+      makeSetter(canvasRef),
+    )(mediaSize);
+  }, [mediaSize]);
+
+  useEffect(() => {
+    resize(screenSize); // Invoke "mediaSize" to change.
 
     try {
       enumerateDevices().then((list: any[] | any | unknown) => {
@@ -203,15 +203,9 @@ export const Face: React.FC = (props) => {
   // >Capture</button>
   
   return (
-    <div css={css`
-${tw`flex flex-col justify-start content-center items-center`}
-    `}>
-      <div id="face-on" css={css`
-${tw`flex flex-col justify-start content-center items-center`}
-      `}>
-        <div className="face-row" css={css`
-${tw`flex flex-row justify-center content-start items-start`}
-        `}>
+    <div css={tw`flex flex-col justify-start content-center items-center`}>
+      <div id="face-on" css={tw`flex flex-col justify-start content-center items-center`}>
+        <div className="face-row" css={tw`flex flex-row justify-center content-start items-start`}>
           <button
             className={toggleBtnClass}
             onClick={() => { toggle() }}
