@@ -2,18 +2,22 @@
  * Face Detection API
  */
 /* eslint-disable @typescript-eslint/no-unused-vars, react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useCallback, RefObject } from 'react';
-import { compose } from 'ramda';
+import React, { useEffect, useState, useCallback, RefObject, MutableRefObject } from 'react';
+import { compose, apply } from 'ramda';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
-// import { useVideo, useDebounce } from 'react-use';
 import { useVideo } from 'react-use';
+// @todo
+// https://github.com/streamich/react-use/issues/618
+// -----------------------------------------------------------
+// import { useVideo, useDebounce } from 'react-use';
+import { useDebounce } from './contexts/Debounce';
+// -----------------------------------------------------------
 import { faceDetect } from './lib/facedetector';
-import { useScreenSize, getScreenSize } from './contexts/ScreenSize';
+import { useScreenSize, getScreenSize, ScreenSizeStateType } from './contexts/ScreenSize';
 import { useCanvas } from './contexts/Canvas';
 import { useLooper } from './contexts/Looper';
-import { useDebounce } from './contexts/Debounce';
 
 import './Face.css';
 
@@ -62,7 +66,7 @@ const getUserMedia = (options = {}): Promise<any> => {
   });
 };
 
-const calculateMediaSize = (screenSize) => {
+const calculateMediaSize = (screenSize: ScreenSizeStateType) => {
   const { width: screen_w = 0, height: screen_h = 0 } = screenSize || {};
   const avail = screen_h * 0.7;
   const height = int(avail / 2);
@@ -74,26 +78,41 @@ export const Face: React.FC = (props) => {
   const { screenSize } = useScreenSize();
 
   const [video, videoState, videoControls, videoRef] = useVideo(
-    <video id="face-video" autoPlay />
+    <video css={tw`bg-black`} autoPlay />
   );
   
   const [canvas, canvasState, canvasRef] = useCanvas(
-    <canvas id="face-canvas" />
+    <canvas css={tw`bg-black`} />
   );
+
+  type MediaSizeType = {
+    width?: number
+    height?: number
+  } & unknown;
 
   const [mediaSize, setMediaSize] = useState(calculateMediaSize(screenSize));
   const [btnName, setBtnName] = useState('Play');
   const [toggleBtnClass, setToggleBtnClass] = useState('face-btn');
   const [message, setMessage] = useState('');
   
+  // apply: <L extends any[]>(fn: Function) => (args: L) => fn(...args: L)
+  const resize = apply(compose(setMediaSize, calculateMediaSize));
+
+  useDebounce(resize, 800, [screenSize]);
+
+  const toggle = useCallback((): void => {
+    videoControls[videoState.paused ? 'play' : 'pause']();
+  }, [videoState]);
+
   const capture = (): Promise<void> => new Promise((resolve, reject) => {
     try {
       const canvas: HTMLCanvasElement | null = canvasRef.current;
       const context: CanvasRenderingContext2D | null = canvas && canvas.getContext('2d');
       if (canvas && context) {
+        // Since "clearRect" does not clear canvas,
+        // resizing canvas size is the only way.
         // Invoke "mediaSize" to change.
-        // Resizing canvas is the ONLY way to clearRect.
-        resize(screenSize);
+        resize([screenSize]);
 
         // A video capture to canvas image.
         context.fillRect(0, 0, canvas.width, canvas.height);
@@ -113,36 +132,26 @@ export const Face: React.FC = (props) => {
     }
   });
 
-  const toggle: Function = (): void => {
-    if (videoState.paused) {
-      videoControls.play();
-    } else {
-      videoControls.pause();
-    }
-  }
+  // Partial application function.
+  const makeSetter = (ref: MutableRefObject<any>): Function =>
+    ({ width = 0, height = 0 }): MediaSizeType => {
+      const el: any | null = ref.current;
+      if (el) {
+        el.width = width;
+        el.height = height;
+      }
+      return mediaSize;
+    };
 
-  const makeSetter = (ref) => ({ width = 0, height = 0 }) => {
-    const el: any | null = ref.current;
-    if (el) {
-      el.width = width;
-      el.height = height;
-    }
-    return mediaSize;
-  };
-
-  const resize = compose(setMediaSize, calculateMediaSize);
-
-  useDebounce(resize, 800, [screenSize]);
+  const vSize = makeSetter(videoRef);
+  const cSize = makeSetter(canvasRef);
 
   useEffect(() => {
-    compose(
-      makeSetter(videoRef),
-      makeSetter(canvasRef),
-    )(mediaSize);
+    compose(vSize, cSize)(mediaSize);
   }, [mediaSize]);
 
   useEffect(() => {
-    resize(screenSize); // Invoke "mediaSize" to change.
+    resize([screenSize]); // Invoke "mediaSize" to change.
 
     try {
       enumerateDevices().then((list: any[] | any | unknown) => {
@@ -201,25 +210,33 @@ export const Face: React.FC = (props) => {
   //   style={{ marginLeft: '0.4em' }}
   //   onClick={() => { capture() }}
   // >Capture</button>
+
+  const Row = styled.div`${tw`mt-2`}`;
   
   return (
     <div css={tw`flex flex-col justify-start content-center items-center`}>
       <div id="face-on" css={tw`flex flex-col justify-start content-center items-center`}>
-        <div className="face-row" css={tw`flex flex-row justify-center content-start items-start`}>
+        <Row css={tw`flex flex-row justify-center content-start items-start`}>
           <button
             className={toggleBtnClass}
             onClick={() => { toggle() }}
           >{btnName}</button>
-        </div>
-        <div className="face-row face-message" css={css`width: ${int(mediaSize.width * 0.97)}px;`}>
+        </Row>
+        <Row css={css`
+width: ${int(mediaSize.width * 0.97)}px;
+background-color: #000000;
+color: #e2e2e2;
+font-size: 0.9em;
+padding: 0.5em;
+        `}>
           {message}
-        </div>
-        <div className="face-row">
+        </Row>
+        <Row>
           {video}
-        </div>
-        <div className="face-row">
+        </Row>
+        <Row>
           {canvas}
-        </div>
+        </Row>
       </div>
     </div>
   );

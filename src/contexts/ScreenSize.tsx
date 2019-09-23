@@ -11,12 +11,12 @@ const ScreenSizeContext: any = createContext({});
 
 export const ScreenSizeProvider = ScreenSizeContext.Provider;
 
-export type ScreenSizeType = {
+export type ScreenSizeStateType = {
   width?: number
   height?: number
 } & unknown
 
-export const getScreenSize = (): ScreenSizeType => ({
+export const getScreenSize = (): ScreenSizeStateType => ({
   width: window.innerWidth || 0,
   height: window.innerHeight || 0,
 });

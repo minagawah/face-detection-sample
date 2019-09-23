@@ -3,8 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { css, keyframes } from '@emotion/core';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import styled from '@emotion/styled';
-import tw from 'tailwind.macro';
 
 import { composeContextProviders } from './lib/utils';
 import { ProvideScreenSize } from './contexts/ScreenSize';

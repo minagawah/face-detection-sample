@@ -1,6 +1,6 @@
 /**
  * Copied and modified the original from `react-use`.
- * Issue is discussed here:
+ * Issue:
  * https://github.com/streamich/react-use/issues/618
  */
 import { useUpdateEffect } from 'react-use';
