@@ -9,6 +9,7 @@ Playing with Face Detection API **(+ React Hooks!!!)**
 [3. What I Did](#what-i-did)  
 [4. Available Scripts](#avail)  
 [5. Notes](#notes)  
+&nbsp; [5-1. emotion.styled + useRef](#notes-emotion-useref)  
 [6. LICENSE](#license)  
 
 ![screenshot](screenshot.png "Screenshot")
@@ -210,6 +211,45 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 <a id="notes"></a>
 ## 5. Notes
 
+<a id="notes-emotion-useref"></a>
+### 5-1. emotion.styled + useRef issue
+
+Say, I use have a custom component
+defined inline using `emotion.styled`.
+
+```js
+import styled from '@emotion/styled';
+
+const Row = styled.div`
+  margin-top: 0.2em;
+`;
+
+return (
+  <Row>
+    <video ref="videoRef" />
+  </Row>
+);
+```
+
+then, I found out the `ref` for the video tag
+seems to show an odd behavior.
+Even if I assign the media stream to `videoRef.srcObject`,
+in the next tick whe React renders the DOM,
+`srcObject` is no longer there...  
+So it behaves the same when attaching
+other attributes like `width` or `height` to the DOM.
+
+For the workaround, you should consider
+not using a custom component with `emotion.styled`,
+but use a plain old `div`:
+
+```js
+return (
+  <div css={tw`mt-4`}>
+    <video ref="videoRef" />
+  </div>
+);
+```
 
 <a href="license"></a>
 ## 6. License
