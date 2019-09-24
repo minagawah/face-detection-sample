@@ -2,7 +2,7 @@
  * Face Detection API
  */
 /* eslint-disable @typescript-eslint/no-unused-vars, react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useCallback, RefObject, MutableRefObject } from 'react';
+import React, { useEffect, useLayoutEffect, useState, useCallback, RefObject, MutableRefObject } from 'react';
 import { compose, apply } from 'ramda';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
@@ -82,6 +82,7 @@ export const Face: React.FC = (props) => {
     height?: number
   } & unknown;
 
+  const [ready, setReady] = useState(false);
   const [mediaSize, setMediaSize] = useState(calculateMediaSize(screenSize));
   const [btnName, setBtnName] = useState('Play');
   const [toggleBtnClass, setToggleBtnClass] = useState('face-btn');
@@ -93,6 +94,7 @@ export const Face: React.FC = (props) => {
   useDebounce(resize, 800, [screenSize]);
 
   const toggle = (): void => {
+    print(`(toggle) videoState.paused: ${videoState.paused ? 'true' : 'false'}`);
     videoControls[videoState.paused ? 'play' : 'pause']();
   };
 
@@ -124,8 +126,7 @@ export const Face: React.FC = (props) => {
     }
   });
 
-  // Partial application function.
-  const makeSetter = (ref: MutableRefObject<any>): Function =>
+  const makeSetter = (name: string, ref: MutableRefObject<any>): Function =>
     ({ width = 0, height = 0 }): MediaSizeType => {
       const el: any | null = ref.current;
       if (el) {
@@ -135,13 +136,40 @@ export const Face: React.FC = (props) => {
       return mediaSize; // Passing it for the next in "compose".
     };
 
-  const vSize = makeSetter(videoRef);
-  const cSize = makeSetter(canvasRef);
+  const vSize = makeSetter('video', videoRef);
+  const cSize = makeSetter('canvas', canvasRef);
+  
+  const setMediaSizeBoth = compose(vSize, cSize);
 
-  useEffect(() => {
-    compose(vSize, cSize)(mediaSize);
+  // Resize video and canvas when "mediaSize" changes...
+  useLayoutEffect(() => {
+    if (!ready) return;
+    setMediaSizeBoth(mediaSize);
   }, [mediaSize]);
 
+  // Toggle buttons when "videoState.paused" changes...
+  useEffect(() => {
+    const video: any | null = videoRef.current;
+    
+    if (video.srcObject) {
+      if (videoState.paused) {
+        loop.destroy(() => {});
+        setMessage('Paused.');
+        setBtnName('Play');
+        setToggleBtnClass('face-btn face-btn-play');
+      } else {
+        loop.start(async () => { await capture(); }, 200);
+        setMessage('Streaming...');
+        setBtnName('Pause');
+        setToggleBtnClass('face-btn face-btn-pause');
+      }
+    } else {
+      setBtnName('Play');
+      setToggleBtnClass('face-btn face-btn-play');
+    }
+  }, [videoState.paused, ready]);
+  
+  // Runs only once when mounted.
   useEffect(() => {
     resize([screenSize]); // Invoke "mediaSize" to change.
 
@@ -161,6 +189,9 @@ export const Face: React.FC = (props) => {
     )).then((stream) => {
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
+        videoRef.current.onloadedmetadata = () => {
+          setReady(true);
+        }
       }
     }).catch((err) => {
       console.warn(err);
@@ -169,58 +200,31 @@ export const Face: React.FC = (props) => {
     });
   }, []);
   
-  useEffect(() => {
-    const video: any | null = videoRef.current;
-    if (video.srcObject) {
-      if (videoState.paused) {
-        loop.destroy(() => {});
-        setMessage('Paused.');
-        setBtnName('Play');
-        setToggleBtnClass('face-btn face-btn-play');
-      } else {
-        loop.start(async () => { await capture(); }, 200);
-        setMessage('Streaming...');
-        setBtnName('Pause');
-        setToggleBtnClass('face-btn face-btn-pause');
-      }
-    } else {
-      setBtnName('Play');
-      setToggleBtnClass('face-btn face-btn-play');
-    }
-  }, [videoState.paused]);
-
-  // <button
-  //   className="face-btn face-btn-capture"
-  //   style={{ marginLeft: '0.4em' }}
-  //   onClick={() => { capture() }}
-  // >Capture</button>
-
-  const Row = styled.div`${tw`mt-2`}`;
-  
   return (
     <div css={tw`flex flex-col justify-start content-center items-center`}>
       <div id="face-on" css={tw`flex flex-col justify-start content-center items-center`}>
-        <Row css={tw`flex flex-row justify-center content-start items-start`}>
+        <div css={tw`flex flex-row justify-center content-start items-start`}>
           <button
             className={toggleBtnClass}
             onClick={() => { toggle() }}
           >{btnName}</button>
-        </Row>
-        <Row css={css`
+        </div>
+        <div css={css`
 width: ${int(mediaSize.width * 0.97)}px;
 background-color: #000000;
 color: #e2e2e2;
 font-size: 0.9em;
 padding: 0.5em;
+${tw`mt-2`}
         `}>
           {message}
-        </Row>
-        <Row>
+        </div>
+        <div css={tw`mt-2`}>
           {video}
-        </Row>
-        <Row>
+        </div>
+        <div css={tw`mt-2`}>
           {canvas}
-        </Row>
+        </div>
       </div>
     </div>
   );
