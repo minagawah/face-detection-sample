@@ -75,8 +75,6 @@ export const Face: React.FC = (props) => {
     <canvas css={tw`bg-black`} />
   );
 
-  const loop = useLooper();
-
   type MediaSizeType = {
     width?: number
     height?: number
@@ -93,13 +91,10 @@ export const Face: React.FC = (props) => {
 
   useDebounce(resize, 800, [screenSize]);
 
-  const toggle = (): void => {
-    print(`(toggle) videoState.paused: ${videoState.paused ? 'true' : 'false'}`);
-    videoControls[videoState.paused ? 'play' : 'pause']();
-  };
-
   const capture = (): Promise<void> => new Promise((resolve, reject) => {
     try {
+      if (!ready) throw new Error(`Not ready: ${ready}`);
+
       const canvas: HTMLCanvasElement | null = canvasRef.current;
       const context: CanvasRenderingContext2D | null = canvas && canvas.getContext('2d');
       if (canvas && context) {
@@ -125,6 +120,12 @@ export const Face: React.FC = (props) => {
       reject(err);
     }
   });
+  
+  const loop = useLooper(capture, 200);
+
+  const toggle = (): void => {
+    videoControls[videoState.paused ? 'play' : 'pause']();
+  };
 
   const makeSetter = (name: string, ref: MutableRefObject<any>): Function =>
     ({ width = 0, height = 0 }): MediaSizeType => {
@@ -138,36 +139,38 @@ export const Face: React.FC = (props) => {
 
   const vSize = makeSetter('video', videoRef);
   const cSize = makeSetter('canvas', canvasRef);
-  
   const setMediaSizeBoth = compose(vSize, cSize);
 
   // Resize video and canvas when "mediaSize" changes...
   useLayoutEffect(() => {
-    if (!ready) return;
-    setMediaSizeBoth(mediaSize);
+    if (ready) {
+      setMediaSizeBoth(mediaSize);
+    }
   }, [mediaSize]);
 
   // Toggle buttons when "videoState.paused" changes...
   useEffect(() => {
-    const video: any | null = videoRef.current;
-    
-    if (video.srcObject) {
-      if (videoState.paused) {
-        loop.destroy(() => {});
-        setMessage('Paused.');
+    if (ready) {
+      const video: any | null = videoRef.current;
+
+      if (video.srcObject) {
+        if (videoState.paused) {
+          loop.destroy();
+          setMessage('Paused.');
+          setBtnName('Play');
+          setToggleBtnClass('face-btn face-btn-play');
+        } else {
+          loop.start();
+          setMessage('Streaming...');
+          setBtnName('Pause');
+          setToggleBtnClass('face-btn face-btn-pause');
+        }
+      } else {
         setBtnName('Play');
         setToggleBtnClass('face-btn face-btn-play');
-      } else {
-        loop.start(async () => { await capture(); }, 200);
-        setMessage('Streaming...');
-        setBtnName('Pause');
-        setToggleBtnClass('face-btn face-btn-pause');
       }
-    } else {
-      setBtnName('Play');
-      setToggleBtnClass('face-btn face-btn-play');
     }
-  }, [videoState.paused, ready]);
+  }, [videoState.paused, ready]); // "ready" so that runs for the first time.
   
   // Runs only once when mounted.
   useEffect(() => {
@@ -198,6 +201,13 @@ export const Face: React.FC = (props) => {
       setMessage('Error: video stream is not supported');
       // clearMessage(8000);
     });
+    
+    // Stop the capture when unmounted.
+    return () => {
+      setReady(false);
+      videoControls.pause();
+      loop.destroy();
+    };
   }, []);
   
   return (
