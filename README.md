@@ -21,14 +21,14 @@ See the instructions in ["2. Usage"](#usage) for how.***
 <a id="about"></a>
 ## 1. About
 
-I found out Chrome browser has
+Chrome browser has
 [Face Detection API](https://www.chromestatus.com/feature/4757990523535360)
 as an experimental feature, so I gave a try.  
-Turned out, it was ridiculously easy.
+It turned out, it was ridiculously easy.
 
 Also, this sample project uses
 [React Hooks](https://reactjs.org/docs/hooks-intro.html)
-because, I believe, the time is ripe.  
+because I believe the time is ripe.  
 (most of the hooks are of
 [streamich/react-use](https://github.com/streamich/react-use))
 
@@ -41,41 +41,42 @@ came out, it was a life saver.
 With [ducks](https://github.com/erikras/ducks-modular-redux),
 files in my projects were no longer messy.
 
-Back at that time, I was also looking for
+Back at that time I was also looking for
 FP way of implementing React apps.  
 [redux-observable](https://github.com/redux-observable/redux-observable)
-was one of the choices,
+was one of the choices
 but I knew it would become much messier.  
 I knew it from the experience of using
 [RxJS](https://github.com/ReactiveX/rxjs)
 and
-[MobX](https://github.com/mobxjs/mobx)  
-with which you tend to forget in your project
-where you defined your publish/subscribe.  
+[MobX](https://github.com/mobxjs/mobx)
+with which  
+you tend to forget in your project
+where you placed your pub/subs.  
 [recompose](https://github.com/acdlite/recompose)
-was another, and I chose it for most of my React projects.
+was another, and I chose it for most of my projects.
 
 I vividly remember when
 [proppy](https://github.com/fahad19/proppy)
 came out last year.  
-I realized that was the time the nightmere has ended.  
-It was the genuine way of applying FP.
+That was the time the nightmere has ended.  
+It was beautiful and I instantly fell in love with it.
 
-Then, finally,
-[React Hooks!!!!!!!](https://reactjs.org/docs/hooks-intro.html)  
-It was a huge deal to me.  
-I don't know how long I've been waiting
-for a legitimate way of applying FP,  
-and at the same time
-enabling me to neatly place files for state management.  
+Then, finally came
 [React Hooks](https://reactjs.org/docs/hooks-intro.html)
-was the one for me.
-I really mean it.  
+!!!  
+To me, it was a big deal.  
+You have no idea how long have I been waiting
+for a legitimate way of applying FP,  
+which also enables me to neatly place actual files.  
+[React Hooks](https://reactjs.org/docs/hooks-intro.html)
+made my codes cleaner and more explicit.  
 Compare to
 [the mess I made last year](https://github.com/minagawah/react-proppy-deckgl-sample),
-and notice how the codes have become cleaner!  
-I mean, honestly.  
-I am so glad to be born into this right moment....
+notice how it become cleaner!  
+Honestly, I am so glad to be born into this right moment.  
+(tough, I recently feel perplexed with odd and unexpected  
+behaviors when I have wrongly wired dependencies...)
 
 
 <a id="usage"></a>
