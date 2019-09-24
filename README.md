@@ -75,8 +75,10 @@ Compare to
 [the mess I made last year](https://github.com/minagawah/react-proppy-deckgl-sample),
 notice how it become cleaner!  
 Honestly, I am so glad to be born into this right moment.  
-(tough, I recently feel perplexed with odd and unexpected  
-behaviors when I have wrongly wired dependencies...)
+
+*Note: However, I recently feel a bit perplexed when I have  
+odd and unexpected behaviors, mostly due to my wrongly  
+wired dependencies for effect hooks...*
 
 
 <a id="usage"></a>
