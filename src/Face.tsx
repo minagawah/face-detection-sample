@@ -10,10 +10,7 @@ import tw from 'tailwind.macro';
 import { useVideo } from 'react-use';
 // @todo
 // https://github.com/streamich/react-use/issues/618
-// -----------------------------------------------------------
-// import { useVideo, useDebounce } from 'react-use';
-import { useDebounce } from './contexts/Debounce';
-// -----------------------------------------------------------
+import { useDebounceWrapper } from './contexts/DebounceWrapper';
 import { faceDetect } from './lib/facedetector';
 import { useScreenSize, getScreenSize, ScreenSizeStateType } from './contexts/ScreenSize';
 import { useCanvas } from './contexts/Canvas';
@@ -89,7 +86,7 @@ export const Face: React.FC = (props) => {
   // apply: <L extends any[]>(fn: Function) => (args: L) => fn(...args: L)
   const resize = apply(compose(setMediaSize, calculateMediaSize));
 
-  useDebounce(resize, 800, [screenSize]);
+  useDebounceWrapper(resize, 800, [screenSize], [screenSize]);
 
   const capture = (): Promise<void> => new Promise((resolve, reject) => {
     try {
