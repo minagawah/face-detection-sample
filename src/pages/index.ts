@@ -1,7 +1,7 @@
-import { App } from './App';
 import { Home } from './Home';
+import { Face } from './Face';
 
 export {
-  App,
   Home,
+  Face,
 }

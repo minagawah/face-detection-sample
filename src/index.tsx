@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import { composeContextProviders } from './lib/utils';
 import { ProvideScreenSize } from './contexts/ScreenSize';
-import { App } from './containers/';
+import { App } from './App';
 import './index.css';
 
 import * as serviceWorker from './serviceWorker';

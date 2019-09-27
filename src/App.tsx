@@ -3,10 +3,10 @@ import { css, keyframes } from '@emotion/core';
 import { Route, Switch } from 'react-router-dom';
 import tw from 'tailwind.macro';
 
-import { Home } from './Home';
-import { Nav, Face } from '../components/';
+import { Nav } from './components/';
+import { Home, Face } from './pages';
 
-import logo from '../logo.svg';
+import logo from './logo.svg';
 
 const spin = keyframes`
   from {
