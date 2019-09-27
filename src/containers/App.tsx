@@ -17,9 +17,6 @@ const spin = keyframes`
   }
 `;
 
-type AppliedContext = (React.FC | any)[];
-type AppliedContextList = AppliedContext[];
-
 export const App: React.FC = () => {
   return (
     <div>

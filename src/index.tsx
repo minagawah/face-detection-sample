@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { css } from '@emotion/core';
 import { BrowserRouter as Router } from 'react-router-dom';
-import tw from 'tailwind.macro';
 
 import { composeContextProviders } from './lib/utils';
 import { ProvideScreenSize } from './contexts/ScreenSize';
@@ -17,9 +15,7 @@ type AppliedContextList = AppliedContext[];
 
 ReactDOM.render(
   <Router basename={process.env.PUBLIC_URL}>
-    {composeContextProviders(
-      // Specify multiple contexts you want
-      // to applyto the child components.
+    {composeContextProviders( // Apply multiple contexts.
       [
         [(ProvideScreenSize as React.FC), {}]
       ] as AppliedContextList,
