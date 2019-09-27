@@ -2,8 +2,6 @@
 
 Playing with Face Detection API **(+ React Hooks!!!)**
 
-    "react-use": "^12.2.0",
-
 [1. About](#about)  
 [2. Usage](#usage)  
 [3. What I Did](#what-i-did)  
@@ -250,6 +248,7 @@ return (
   </div>
 );
 ```
+
 
 <a href="license"></a>
 ## 6. License

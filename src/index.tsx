@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { composeContextProviders } from './lib/utils';
-import { ProvideScreenSize } from './contexts/ScreenSize';
+import { ProvideScreenSize } from './contexts/';
 import { App } from './App';
 import './index.css';
 

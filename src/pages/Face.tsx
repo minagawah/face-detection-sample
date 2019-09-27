@@ -9,10 +9,8 @@ import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 import { useVideo } from 'react-use';
 import { faceDetect } from '../lib/facedetector';
-import { useScreenSize, getScreenSize, ScreenSizeStateType } from '../contexts/ScreenSize';
-import { useDebounceWrapper } from '../hooks/DebounceWrapper';
-import { useCanvas } from '../hooks/Canvas';
-import { useLooper } from '../hooks/Looper';
+import { useScreenSize, getScreenSize, ScreenSizeStateType } from '../contexts/';
+import { useCanvas, useDebounceWrapper, useLooper } from '../hooks/';
 
 import './Face.css';
 
