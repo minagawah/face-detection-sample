@@ -8,11 +8,11 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 import { useVideo } from 'react-use';
-import { useDebounceWrapper } from './contexts/DebounceWrapper';
-import { faceDetect } from './lib/facedetector';
-import { useScreenSize, getScreenSize, ScreenSizeStateType } from './contexts/ScreenSize';
-import { useCanvas } from './contexts/Canvas';
-import { useLooper } from './contexts/Looper';
+import { useDebounceWrapper } from '../contexts/DebounceWrapper';
+import { faceDetect } from '../lib/facedetector';
+import { useScreenSize, getScreenSize, ScreenSizeStateType } from '../contexts/ScreenSize';
+import { useCanvas } from '../contexts/Canvas';
+import { useLooper } from '../contexts/Looper';
 
 import './Face.css';
 
