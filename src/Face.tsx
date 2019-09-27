@@ -8,8 +8,6 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 import { useVideo } from 'react-use';
-// @todo
-// https://github.com/streamich/react-use/issues/618
 import { useDebounceWrapper } from './contexts/DebounceWrapper';
 import { faceDetect } from './lib/facedetector';
 import { useScreenSize, getScreenSize, ScreenSizeStateType } from './contexts/ScreenSize';
