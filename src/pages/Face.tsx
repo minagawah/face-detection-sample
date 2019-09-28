@@ -8,7 +8,7 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import tw from 'tailwind.macro';
 import { useVideo } from 'react-use';
-import { faceDetect } from '../lib/facedetector';
+import { faceDetect } from '../lib/';
 import { useScreenSize, getScreenSize, ScreenSizeStateType } from '../contexts/';
 import { useCanvas, useDebounceWrapper, useLooper } from '../hooks/';
 
@@ -49,8 +49,8 @@ const getUserMedia = async (options = {}): Promise<any> => {
   }
 };
 
-const calculateMediaSize = (screenSize: ScreenSizeStateType) => {
-  const { width: screen_w = 0, height: screen_h = 0 } = screenSize || {};
+const calculateMediaSize = (size: ScreenSizeStateType) => {
+  const { width: screen_w = 0, height: screen_h = 0 } = size || {};
   const avail = screen_h * 0.7;
   const height = int(avail / 2);
   const width = int(height * RATIO);
@@ -79,9 +79,11 @@ export const Face: React.FC = (props) => {
   const [toggleBtnClass, setToggleBtnClass] = useState('face-btn');
   const [message, setMessage] = useState('');
   
-  // apply: <L extends any[]>(fn: Function) => (args: L) => fn(...args: L)
+  // R.apply converts an array to arguments object, and applies the function given.
+  // <L extends any[]>(f: Function) => (args: L) => f(...args: L)
   const resize = apply(compose(setMediaSize, calculateMediaSize));
 
+  // 3rd --> [deps], 4th --> [args]
   useDebounceWrapper(resize, 800, [screenSize], [screenSize]);
 
   const capture = (): Promise<void> => new Promise((resolve, reject) => {
@@ -91,9 +93,9 @@ export const Face: React.FC = (props) => {
       const canvas: HTMLCanvasElement | null = canvasRef.current;
       const context: CanvasRenderingContext2D | null = canvas && canvas.getContext('2d');
       if (canvas && context) {
-        // Since "clearRect" does not clear canvas,
-        // resizing canvas size is the only way.
-        // Invoke "mediaSize" to change.
+        // `clearRect` does not clear canvas,
+        // and resizing canvas is the only way.
+        // Invoking `mediaSize` to change.
         resize([screenSize]);
 
         // A video capture to canvas image.
@@ -114,6 +116,7 @@ export const Face: React.FC = (props) => {
     }
   });
   
+  // Looper provides a controlled "setInterval".
   const loop = useLooper(capture, 200);
 
   const toggle = (): void => {
@@ -136,34 +139,34 @@ export const Face: React.FC = (props) => {
 
   // Resize video and canvas when "mediaSize" changes...
   useLayoutEffect(() => {
-    if (ready) {
-      setMediaSizeBoth(mediaSize);
-    }
+    if (!ready) return;
+
+    setMediaSizeBoth(mediaSize);
   }, [mediaSize]);
 
   // Toggle buttons when "videoState.paused" changes...
   useEffect(() => {
-    if (ready) {
-      const video: any | null = videoRef.current;
+    if (!ready) return;
 
-      if (video.srcObject) {
-        if (videoState.paused) {
-          loop.destroy();
-          setMessage('Paused.');
-          setBtnName('Play');
-          setToggleBtnClass('face-btn face-btn-play');
-        } else {
-          loop.start();
-          setMessage('Streaming...');
-          setBtnName('Pause');
-          setToggleBtnClass('face-btn face-btn-pause');
-        }
-      } else {
+    const video: any | null = videoRef.current;
+
+    if (video.srcObject) {
+      if (videoState.paused) {
+        loop.destroy();
+        setMessage('Paused.');
         setBtnName('Play');
         setToggleBtnClass('face-btn face-btn-play');
+      } else {
+        loop.start();
+        setMessage('Streaming...');
+        setBtnName('Pause');
+        setToggleBtnClass('face-btn face-btn-pause');
       }
+    } else {
+      setBtnName('Play');
+      setToggleBtnClass('face-btn face-btn-play');
     }
-  }, [videoState.paused, ready]); // "ready" so that runs for the first time.
+  }, [videoState.paused, ready]); // "ready" so it runs when ready.
   
   // Runs only once when mounted.
   useEffect(() => {
